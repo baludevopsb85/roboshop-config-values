@@ -1,4 +1,17 @@
+# --------------------------
+# Vault Authentication Token
+# --------------------------
+# Stores the Vault authentication token for accessing secret mounts
+
 variable "token" {}
+
+
+# -------------
+# Secret Mounts
+# -------------
+# Defines Vault KV v2 secret engine mounts:
+# roboshop-dev – Development project secrets
+# roboshop-infra – Infrastructure project secrets
 
 variable "secret-mounts" {
   default = {
@@ -10,6 +23,22 @@ variable "secret-mounts" {
     }
   }
 }
+
+
+# --------------------------------
+# Application and Service Secrets
+# --------------------------------
+# Stores key-value pairs for all applications and infrastructure services, mapped to the appropriate secret mount.
+# cart – Redis and Catalogue connections
+# frontend – Service URLs and host/port mappings
+# catalogue – MongoDB configuration and schema
+# user – MongoDB and Redis connections
+# mysql – Root password
+# rabbitmq – App user credentials
+# shipping – DB and service endpoints
+# payment – Cart, User, and RabbitMQ connections
+# ssh – Infra SSH credentials
+# github-runner – Runner token (sensitive)
 
 variable "secrets" {
   default = {
